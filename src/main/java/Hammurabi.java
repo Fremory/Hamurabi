@@ -4,9 +4,7 @@ public class Hammurabi {
     public static void main(String[] args) {
 
     }
-
     Random random = new Random();
-    int randomNum = random.nextInt();
     Scanner scanner = new Scanner (System.in);
 
     public Hammurabi() {
@@ -14,7 +12,10 @@ public class Hammurabi {
     }
 
     public int askHowManyAcresToBuy(int price, int bushels){
-        return 0;
+        newCostOfLand() = price;
+        System.out.println("This year's land costs " +  price + " bushels. Insert how many lands you want to buy");
+        int options = scanner.nextInt();
+        return bushels - (options * price);
     }
 
     public int askHowManyAcresToSell(int acresOwned) {

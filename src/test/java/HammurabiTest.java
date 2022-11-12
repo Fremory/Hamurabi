@@ -15,6 +15,10 @@ public class HammurabiTest {
     public void setUp() throws Exception {
         ham = new Hammurabi();
     }
+    @Test
+    public void askHowManyAcresToBuyTest() {
+        ham.askHowManyAcresToBuy()
+    }
 
     @Test
     public final void testPlagueDeaths1() {
