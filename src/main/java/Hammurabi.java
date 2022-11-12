@@ -1,21 +1,29 @@
 import java.util.*;
 
+import static java.lang.Math.floor;
+
 public class Hammurabi {
     public static void main(String[] args) {
 
     }
     Random random = new Random();
     Scanner scanner = new Scanner (System.in);
+    int options;
+    int bushels;
+    int population;
+    int landsOwned;
 
     public Hammurabi() {
 
     }
 
     public int askHowManyAcresToBuy(int price, int bushels){
-        newCostOfLand() = price;
-        System.out.println("This year's land costs " +  price + " bushels. Insert how many lands you want to buy");
-        int options = scanner.nextInt();
-        return bushels - (options * price);
+        int landPurchased = getNumber("This year's price per land is " + price + " bushels. How many do you want to buy?");
+        this.bushels -= landPurchased * price;
+        while ((landPurchased * price) > this.bushels) {
+            landPurchased = getNumber("You wish you can pull bushels out of thin air. Try again!");
+        }
+        return landPurchased;
     }
 
     public int askHowManyAcresToSell(int acresOwned) {
@@ -49,8 +57,8 @@ public class Hammurabi {
 
     public int starvationDeaths(int population, int bushelsFedToPeople) {
         //returning the number of deaths
-        if(population - (int) Math.floor(bushelsFedToPeople/20) < 0) return 0;
-        return population - (int) Math.floor(bushelsFedToPeople/20);
+        if(population - (int) floor(bushelsFedToPeople/20) < 0) return 0;
+        return population - (int) floor(bushelsFedToPeople/20);
     }
 
     public boolean uprising(int population, int howManyPeopleStarved) {

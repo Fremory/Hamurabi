@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,9 +16,23 @@ public class HammurabiTest {
     public void setUp() throws Exception {
         ham = new Hammurabi();
     }
+//    @Test
+//    public void askHowManyAcresToBuyTest() {
+//        //Scanner = 25
+//        int expected = 50;
+//        int actual = ham.askHowManyAcresToBuy(20, 1000);
+//        Assert.assertEquals(expected, actual);
+//    }
+
     @Test
-    public void askHowManyAcresToBuyTest() {
-        ham.askHowManyAcresToBuy()
+    public final void askHowManyAcresToBuyTest() {
+        int landPurchased = ham.askHowManyAcresToBuy(ham.newCostOfLand(), 1000);
+        ham.bushels = 1000;
+        int expected =
+        deaths = ham.starvationDeaths(100, 2500);
+        if (deaths < 0) {
+            fail("You starved a negative number of people!");
+        }
     }
 
     @Test
