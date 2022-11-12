@@ -42,30 +42,37 @@ public class Hammurabi {
     }
 
     public int plagueDeaths(int population) {
+        if(random.nextInt(101) < 15) return population/2;
         return 0;
     }
 
     public int starvationDeaths(int population, int bushelsFedToPeople) {
-        return 0;
+        //returning the number of deaths
+        if(population - (int) Math.floor(bushelsFedToPeople/20) < 0) return 0;
+        return population - (int) Math.floor(bushelsFedToPeople/20);
     }
 
     public boolean uprising(int population, int howManyPeopleStarved) {
-        return true;
+        if ((double) howManyPeopleStarved / population > 0.45) return true;
+        return false;
     }
 
     public int immigrants (int population, int acresOwned, int grainInStorage) {
-        return 0;
+        return (20 * acresOwned + grainInStorage) / (100 * population) + 1;
     }
 
-    public int harvest (int bushelsUsedAsSeed) {
-        return 0;
+    public int harvest (int acres) {
+        //Returning for the number of bushels harvested per acre
+        return random.nextInt(6)+1;
     }
 
     public int grainEatenByRats (int bushels) {
-        return random.nextInt(21)+10;
+        if(random.nextInt(100) < 40) return random.nextInt(21)+10;
+        return 0;
     }
 
     public int newCostOfLand() {
+        //Returning random integer from 0 -> 7, then add 17
         return random.nextInt(7)+17;
     }
 
@@ -81,3 +88,4 @@ public class Hammurabi {
         }
     }
 }
+
