@@ -16,24 +16,70 @@ public class HammurabiTest {
     public void setUp() throws Exception {
         ham = new Hammurabi();
     }
-//    @Test
-//    public void askHowManyAcresToBuyTest() {
-//        //Scanner = 25
-//        int expected = 50;
-//        int actual = ham.askHowManyAcresToBuy(20, 1000);
-//        Assert.assertEquals(expected, actual);
-//    }
-
     @Test
-    public final void askHowManyAcresToBuyTest() {
-        int landPurchased = ham.askHowManyAcresToBuy(ham.newCostOfLand(), 1000);
+    public void askHowManyLandsToBuyTest1() {
+        //If price of lands are at maximum of 24
         ham.bushels = 1000;
-        int expected =
-        deaths = ham.starvationDeaths(100, 2500);
-        if (deaths < 0) {
-            fail("You starved a negative number of people!");
-        }
+        ham.landsOwned = 100;
+        int landsBought = ham.askHowManyLandsToBuy(40);
+        Assert.assertEquals(40, landsBought);
     }
+    @Test
+    public void askHowManyLandsToBuyTest2() {
+        //If price of lands are at minimum of 17
+        ham.bushels = 679;
+        ham.landsOwned = 100;
+        int landsBought = ham.askHowManyLandsToBuy(40);
+        Assert.assertEquals(0, landsBought);
+    }
+    @Test
+    public void askHowManyLandsToBuyTest3() {
+        //If price of lands are random
+        ham.bushels = 800;
+        ham.landsOwned = 100;
+        int landsBought = ham.askHowManyLandsToBuy(40);
+        Assert.assertTrue("Lands bought is " + landsBought,
+                landsBought == 40 || landsBought == 0);
+    }
+    @Test
+    public void askHowManyLandsToBuyTest4() {
+        //Updated lands Owned
+        ham.bushels = 800;
+        ham.landsOwned = 100;
+        ham.askHowManyLandsToBuy(40);
+        Assert.assertTrue("Lands bought is " + ham.landsOwned,
+                ham.landsOwned == 140 || ham.landsOwned == 100);
+    }
+    @Test
+    public void askaskHowManyLandsToSellTest1() {
+        //If lands owned after sold is more than 70% of the population
+        ham.landsOwned = 100;
+        ham.population = 100;
+        int landsSold = ham.askHowManyLandsToSell(20);
+        Assert.assertEquals(20, landsSold);
+    }
+    @Test
+    public void askaskHowManyLandsToSellTest2() {
+        //If lands owned after sold is less than 70% of the population
+        //Game over scenario
+        ham.landsOwned = 89;
+        ham.population = 100;
+        int landsSold = ham.askHowManyLandsToSell(20);
+        Assert.assertEquals(0, landsSold);
+    }
+    @Test
+    public void askaskHowManyLandsToSellTest3() {
+        //If lands owned after sold is less than 70% of the population
+        ham.bushels = 1000;
+        ham.population = 100;
+        ham.landsOwned = 100;
+        ham.askHowManyLandsToSell(20);
+        System.out.println("Total bushels after sell: " + ham.bushels);
+        Assert.assertTrue("Total bushels after sell: " + ham.bushels
+        , ham.bushels <= 1460 && ham.bushels >= 1340);
+    }
+
+
 
     @Test
     public final void testPlagueDeaths1() {

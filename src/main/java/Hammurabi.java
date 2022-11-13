@@ -1,33 +1,48 @@
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.*;
 
 import static java.lang.Math.floor;
 
 public class Hammurabi {
     public static void main(String[] args) {
-
     }
     Random random = new Random();
     Scanner scanner = new Scanner (System.in);
-    int options;
     int bushels;
     int population;
     int landsOwned;
+    int year;
+    int price;
 
     public Hammurabi() {
-
     }
-
-    public int askHowManyAcresToBuy(int price, int bushels){
-        int landPurchased = getNumber("This year's price per land is " + price + " bushels. How many do you want to buy?");
-        this.bushels -= landPurchased * price;
-        while ((landPurchased * price) > this.bushels) {
-            landPurchased = getNumber("You wish you can pull bushels out of thin air. Try again!");
+    public void setUpNewGame() {
+        this.setPopulation(100);
+        this.setLandsOwned(1000);
+        this.setBushels(3000);
+        this.setYear(0);
+        this.setPrice(19);
+    }
+    public int askHowManyLandsToBuy(int landPurchased) {
+        if ((landPurchased * newCostOfLand()) >= getBushels()) {
+            System.out.println("Because you're trying to buy more than what you can afford, you get nothing and like it!");
+            return 0;
+        } else {
+            setBushels(this.bushels -= landPurchased * newCostOfLand());
+            setLandsOwned(this.landsOwned += landPurchased);
+            return landPurchased;
         }
-        return landPurchased;
     }
-
-    public int askHowManyAcresToSell(int acresOwned) {
-        return 0;
+    public int askHowManyLandsToSell(int landSold) {
+        setLandsOwned(this.landsOwned -= landSold);
+        if (this.landsOwned*100/this.population < 70) {
+            //GAME OVER
+            return 0;
+        } else {
+            setBushels(this.bushels += landSold * newCostOfLand());
+            return landSold;
+        }
     }
 
     public int askHowMuchGrainToFeedPeople(int bushels) {
@@ -95,6 +110,48 @@ public class Hammurabi {
                 System.out.println("\"" + scanner.next() + "\" isn't a number!");
             }
         }
+    }
+
+    //GETTERS AND SETTERS LIST//
+
+
+    public int getBushels() {
+        return bushels;
+    }
+
+    public void setBushels(int bushels) {
+        this.bushels = bushels;
+    }
+
+    public int getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+
+    public int getLandsOwned() {
+        return landsOwned;
+    }
+
+    public void setLandsOwned(int landsOwned) {
+        this.landsOwned = landsOwned;
+    }
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
 
