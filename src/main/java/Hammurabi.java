@@ -24,34 +24,35 @@ public class Hammurabi {
         this.setYear(0);
         this.setPrice(19);
     }
-    public int askHowManyLandsToBuy(int landPurchased) {
+    public int howManyLandsToBuy(int landPurchased) {
         if ((landPurchased * newCostOfLand()) >= getBushels()) {
             System.out.println("Because you're trying to buy more than what you can afford, you get nothing and like it!");
             return 0;
         } else {
-            setBushels(this.bushels -= landPurchased * newCostOfLand());
-            setLandsOwned(this.landsOwned += landPurchased);
+            setBushels(this.bushels - (landPurchased * newCostOfLand()));
+            setLandsOwned(this.landsOwned + landPurchased);
             return landPurchased;
         }
     }
-    public int askHowManyLandsToSell(int landSold) {
-        setLandsOwned(this.landsOwned -= landSold);
+    public int howManyLandsToSell(int landSold) {
+        setLandsOwned(this.landsOwned - landSold);
         if (this.landsOwned*100/this.population < 70) {
             //GAME OVER
             return 0;
         } else {
-            setBushels(this.bushels += landSold * newCostOfLand());
+            setBushels(this.bushels + (landSold * newCostOfLand()));
             return landSold;
         }
     }
-
-    public int askHowMuchGrainToFeedPeople(int bushels) {
-        return 0;
+    public int howMuchBushelsToFeedPeople(int bushels) {
+        if (this.bushels < bushels) bushels = this.bushels;
+        return bushels;
     }
 
-    public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
-        return 0;
+    public int howManyLandsToPlant(int landsToBePlanted, int population, int bushels) {
+
     }
+
 
     public void printSummary() {
         //String
