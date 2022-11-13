@@ -17,63 +17,63 @@ public class HammurabiTest {
         ham = new Hammurabi();
     }
     @Test
-    public void HowManyLandsToBuyTest1() {
-        //If price of lands are at maximum of 24
+    public void HowManyAcresToBuyTest1() {
+        //If price of acres are at maximum of 24
         ham.bushels = 1000;
-        ham.landsOwned = 100;
-        int landsBought = ham.howManyLandsToBuy(40);
-        Assert.assertEquals(40, landsBought);
+        ham.acresOwned = 100;
+        int acresBought = ham.howManyAcresToBuy(40);
+        Assert.assertEquals(40, acresBought);
     }
     @Test
-    public void HowManyLandsToBuyTest2() {
-        //If price of lands are at minimum of 17
+    public void HowManyAcresToBuyTest2() {
+        //If price of acres are at minimum of 17
         ham.bushels = 679;
-        ham.landsOwned = 100;
-        int landsBought = ham.howManyLandsToBuy(40);
-        Assert.assertEquals(0, landsBought);
+        ham.acresOwned = 100;
+        int acresBought = ham.howManyAcresToBuy(40);
+        Assert.assertEquals(0, acresBought);
     }
     @Test
-    public void HowManyLandsToBuyTest3() {
-        //If price of lands are random
+    public void HowManyAcresToBuyTest3() {
+        //If price of acres are random
         ham.bushels = 800;
-        ham.landsOwned = 100;
-        int landsBought = ham.howManyLandsToBuy(40);
-        Assert.assertTrue("Lands bought is " + landsBought,
-                landsBought == 40 || landsBought == 0);
+        ham.acresOwned = 100;
+        int acresBought = ham.howManyAcresToBuy(40);
+        Assert.assertTrue("Acres bought is " + acresBought,
+                acresBought == 40 || acresBought == 0);
     }
     @Test
-    public void HowManyLandsToBuyTest4() {
-        //Updated lands Owned
+    public void HowManyAcresToBuyTest4() {
+        //Updated acres Owned
         ham.bushels = 800;
-        ham.landsOwned = 100;
-        ham.howManyLandsToBuy(40);
-        Assert.assertTrue("Lands bought is " + ham.landsOwned,
-                ham.landsOwned == 140 || ham.landsOwned == 100);
+        ham.acresOwned = 100;
+        ham.howManyAcresToBuy(40);
+        Assert.assertTrue("Acres bought is " + ham.acresOwned,
+                ham.acresOwned == 140 || ham.acresOwned == 100);
     }
     @Test
-    public void HowManyLandsToSellTest1() {
-        //If lands owned after sold is more than 70% of the population
-        ham.landsOwned = 100;
+    public void HowManyAcresToSellTest1() {
+        //If acres owned after sold is more than 70% of the population
+        ham.acresOwned = 100;
         ham.population = 100;
-        int landsSold = ham.howManyLandsToSell(20);
-        Assert.assertEquals(20, landsSold);
+        int acresSold = ham.howManyAcresToSell(20);
+        Assert.assertEquals(20, acresSold);
     }
     @Test
-    public void HowManyLandsToSellTest2() {
-        //If lands owned after sold is less than 70% of the population
+    public void HowManyAcresToSellTest2() {
+        //If acres owned after sold is less than 70% of the population
         //Game over scenario
-        ham.landsOwned = 89;
+        ham.acresOwned = 89;
         ham.population = 100;
-        int landsSold = ham.howManyLandsToSell(20);
-        Assert.assertEquals(0, landsSold);
+        int acresSold = ham.howManyAcresToSell(20);
+        Assert.assertEquals(0, acresSold);
     }
     @Test
-    public void howManyLandsToSellTest3() {
+    public void howManyAcresToSellTest3() {
         //Bushels being returned
         ham.bushels = 1000;
         ham.population = 100;
-        ham.landsOwned = 100;
-        ham.howManyLandsToSell(20);
+        ham.acresOwned = 100;
+        ham.howManyAcresToSell(20);
         Assert.assertTrue("Total bushels after sell: " + ham.bushels
         , ham.bushels <= 1460 && ham.bushels >= 1340);
     }
@@ -94,46 +94,78 @@ public class HammurabiTest {
         Assert.assertEquals(1500, ham.howMuchBushelsToFeedPeople(2000));
     }
     @Test
-    public void howManyLandsToPlantTest1() {
-        //If lands to be planted is more than lands owned
-        ham.landsOwned = 1000;
-        Assert.assertEquals(1000, ham.howManyLandsToPlant(1001, 999, 1001));
+    public void howManyAcresToPlantTest1() {
+        //If acres to be planted is more than acres owned
+        ham.acresOwned = 1000;
+        Assert.assertEquals(1000, ham.howManyAcresToPlant(1001, 999, 1001));
     }
     @Test
-    public void howManyLandsToPlantTest2() {
-        //If lands to be planted is more than population * 10
-        ham.landsOwned = 1000;
-        Assert.assertEquals(900, ham.howManyLandsToPlant(1000, 90, 1001));
+    public void howManyAcresToPlantTest2() {
+        //If acres to be planted is more than population * 10
+        ham.acresOwned = 1000;
+        Assert.assertEquals(900, ham.howManyAcresToPlant(1000, 90, 1001));
     }
     @Test
-    public void howManyLandsToPlantTest3() {
-        //If lands to be planted is more than bushels
-        ham.landsOwned = 1100;
-        Assert.assertEquals(900, ham.howManyLandsToPlant(1000, 100, 900));
+    public void howManyAcresToPlantTest3() {
+        //If acres to be planted is more than bushels
+        ham.acresOwned = 1100;
+        Assert.assertEquals(900, ham.howManyAcresToPlant(1000, 100, 900));
     }
     @Test
-    public void howManyLandsToPlantTest4() {
-        //If lands to be planted is more than bushels and bushels is more than population
-        ham.landsOwned = 1100;
-        Assert.assertEquals(650, ham.howManyLandsToPlant(1000, 65, 900));
+    public void howManyAcresToPlantTest4() {
+        //If acres to be planted is more than bushels and bushels is more than population
+        ham.acresOwned = 1100;
+        Assert.assertEquals(650, ham.howManyAcresToPlant(1000, 65, 900));
     }
     @Test
-    public void howManyLandsToPlantTest5() {
-        //If lands to be planted is more than population and population is more than lands owned
-        ham.landsOwned = 500;
-        Assert.assertEquals(500, ham.howManyLandsToPlant(1000, 65, 1000));
+    public void howManyAcresToPlantTest5() {
+        //If acres to be planted is more than population and population is more than acres owned
+        ham.acresOwned = 500;
+        Assert.assertEquals(500, ham.howManyAcresToPlant(1000, 65, 1000));
     }
     @Test
-    public void howManyLandsToPlantTest6() {
-        //If lands to be planted is more than lands owned and lands owned is more than bushels
-        ham.landsOwned = 800;
-        Assert.assertEquals(500, ham.howManyLandsToPlant(1000, 65, 500));
+    public void howManyAcresToPlantTest6() {
+        //If acres to be planted is more than acres owned and acres owned is more than bushels
+        ham.acresOwned = 800;
+        Assert.assertEquals(500, ham.howManyAcresToPlant(1000, 65, 500));
     }
     @Test
-    public void howManyLandsToPlantTest7() {
-        //If everything is lower than lands to be planted
-        ham.landsOwned = 900;
-        Assert.assertEquals(800, ham.howManyLandsToPlant(1000, 90, 800));
+    public void howManyAcresToPlantTest7() {
+        //If everything is lower than acres to be planted
+        ham.acresOwned = 900;
+        Assert.assertEquals(800, ham.howManyAcresToPlant(1000, 90, 800));
+    }
+    @Test
+    public void gameOverTest1() {
+        //If population starved more than 45%
+        ham.setPopulation(100);
+        ham.setBushels(2000);
+        ham.setAcresOwned(1000);
+        Assert.assertEquals(true, ham.gameOver(ham.getPopulation(), 1099, ham.getAcresOwned()));
+    }
+    @Test
+    public void gameOverTest2() {
+        //If population starved exactly 45%
+        ham.setPopulation(100);
+        ham.setBushels(2000);
+        ham.setAcresOwned(1000);
+        Assert.assertEquals(false, ham.gameOver(ham.getPopulation(), 1100, ham.getAcresOwned()));
+    }
+    @Test
+    public void gameOverTest3() {
+        //If acres are less than 7 per population
+        ham.setPopulation(100);
+        ham.setBushels(2000);
+        ham.setAcresOwned(699);
+        Assert.assertEquals(true, ham.gameOver(ham.getPopulation(), 1100, ham.getAcresOwned()));
+    }
+    @Test
+    public void gameOverTest4() {
+        //If acres are exactly 7 per population
+        ham.setPopulation(100);
+        ham.setBushels(2000);
+        ham.setAcresOwned(700);
+        Assert.assertEquals(false, ham.gameOver(ham.getPopulation(), 1100, ham.getAcresOwned()));
     }
     @Test
     public final void testPlagueDeaths1() {
