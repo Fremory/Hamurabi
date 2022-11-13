@@ -97,7 +97,7 @@ public class HammurabiTest {
     public void howManyLandsToPlantTest1() {
         //If lands to be planted is more than lands owned
         ham.landsOwned = 1000;
-        Assert.assertEquals(0, ham.howManyLandsToPlant(1001, 999, 1001));
+        Assert.assertEquals(1000, ham.howManyLandsToPlant(1001, 999, 1001));
     }
     @Test
     public void howManyLandsToPlantTest2() {
@@ -109,7 +109,31 @@ public class HammurabiTest {
     public void howManyLandsToPlantTest3() {
         //If lands to be planted is more than bushels
         ham.landsOwned = 1100;
-        Assert.assertEquals(900, ham.howManyLandsToPlant(1000, 10, 900));
+        Assert.assertEquals(900, ham.howManyLandsToPlant(1000, 100, 900));
+    }
+    @Test
+    public void howManyLandsToPlantTest4() {
+        //If lands to be planted is more than bushels and bushels is more than population
+        ham.landsOwned = 1100;
+        Assert.assertEquals(650, ham.howManyLandsToPlant(1000, 65, 900));
+    }
+    @Test
+    public void howManyLandsToPlantTest5() {
+        //If lands to be planted is more than population and population is more than lands owned
+        ham.landsOwned = 500;
+        Assert.assertEquals(500, ham.howManyLandsToPlant(1000, 65, 1000));
+    }
+    @Test
+    public void howManyLandsToPlantTest6() {
+        //If lands to be planted is more than lands owned and lands owned is more than bushels
+        ham.landsOwned = 800;
+        Assert.assertEquals(500, ham.howManyLandsToPlant(1000, 65, 500));
+    }
+    @Test
+    public void howManyLandsToPlantTest7() {
+        //If everything is lower than lands to be planted
+        ham.landsOwned = 900;
+        Assert.assertEquals(800, ham.howManyLandsToPlant(1000, 90, 800));
     }
     @Test
     public final void testPlagueDeaths1() {

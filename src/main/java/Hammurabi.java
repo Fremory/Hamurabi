@@ -50,6 +50,23 @@ public class Hammurabi {
     }
 
     public int howManyLandsToPlant(int landsToBePlanted, int population, int bushels) {
+        while(true) {
+            if (landsToBePlanted > population*10) {
+                landsToBePlanted = population*10;
+            } else if (landsToBePlanted > landsOwned) {
+                landsToBePlanted = landsOwned;
+            } else if (landsToBePlanted > bushels) {
+                landsToBePlanted = bushels;
+            }
+            if (landsToBePlanted <= population*10 &&
+            landsToBePlanted <= landsOwned &&
+            landsToBePlanted <= bushels) {
+                break;
+            }
+        }
+        return landsToBePlanted;
+    }
+    public void gameOver() {
 
     }
 
